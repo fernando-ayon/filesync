@@ -1,8 +1,8 @@
 Unidirectional 1-N file syncing with history and *local merging* [![Build Status](https://drone.io/github.com/FGRibreau/filesync/status.png)](https://drone.io/github.com/FGRibreau/filesync/latest)
 ================================================================
-
+    
 This is a **proof of concept** AND **a work in progress**, don't share the word, yet.
-
+     
 # Motivation
 
 > “We are in 2015 and my students still have to copy what I wrote on a screen while I teach them something. This is a long and tedious process that slow down the lectures.
@@ -18,7 +18,7 @@ This is a **proof of concept** AND **a work in progress**, don't share the word,
 > — 03/06/2015
 
 ## Current status
-
+    
 FileSync was first made during a lecture on AngularJS/Socket.io/NodeJS with IUT Nantes students on 3rd March 2015.
 
 <p align="center">

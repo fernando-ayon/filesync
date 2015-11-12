@@ -7,5 +7,5 @@ angular.module('FileSync').controller('HistoryCtrl', ['HistoryService', 'Visibil
     this.remove = function (edit) {
       HistoryService.remove(edit);
     };
-  }
+  } 
 ]);

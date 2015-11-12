@@ -52,7 +52,7 @@ function Viewers(sio) {
 }
 
 var viewers = Viewers(sio);
-
+var calendar = [];
 
 // @todo extract in its own
 sio.on('connection', function(socket) {
@@ -62,6 +62,16 @@ sio.on('connection', function(socket) {
     socket.nickname = nickname;
     viewers.add(nickname);
     console.log('new viewer with nickname %s', nickname, viewers);
+  });
+  // console.log('nouvelle connexion', socket.id);
+  socket.on('calendar:askHours', function() {
+    socket.emit('calendar:test', calendar);
+    console.log('envoi des heures : ' + calendar);
+  });
+
+  socket.on('calendar:newfile', function(cal) {
+      console.log(cal);
+      calendar = cal;
   });
 
   socket.on('disconnect', function() {

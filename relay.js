@@ -5,8 +5,15 @@ var fs = require('fs');
 var path = require('path');
 var logger = require('winston');
 var config = require('./config')(logger);
+var moment = require('moment');
 
 var directory = path.resolve(__dirname, process.argv[2]);
+
+////////////////////////////
+var file = (process.argv[3] == undefined) ? '/tmp/iut.json' : path.resolve(__dirname, process.argv[3]);
+logger.info("Using " + file + " as calendar config file");
+var calendar = JSON.parse(fs.readFileSync(file, 'utf8'));
+////////////////////////////
 
 if (!directory) {
   logger.error("Usage: node server.js /path/to/directory");
@@ -18,6 +25,7 @@ logger.info('listening on %s', directory);
 var SOCKET_IO_URL = config.server.exposed_endpoint + '/?access_token=' + config.auth.token;
 
 logger.info('connecting...');
+
 var sio = io(SOCKET_IO_URL, {
   transports: ['websocket', 'polling'],
   multiplex: false
@@ -36,6 +44,9 @@ gaze(directory, function(err, watcher) {
   this.watched(function(err, watched) {
     console.log(watched);
   });
+
+  // Send calendar
+  sio.emit('calendar:newfile',calendar.heures);
 
   // On file changed
   this.on('changed', function(filepath) {
