@@ -18,8 +18,9 @@
     <div class="container" ng-controller="NotifCtrl as notif">
       <h4>Vérifiez l'heure de la prochaine pause...</h4>
       <button ng-click="notif.calculateTime()">En cliquant ici!</button>
-      <div ng-show="notif.timeLeft != null">
-        <p>Prochaine pause dans {{ notif.timeLeft }} minutes. Pause @ {{ notif.breakTime }}</p>
+      <div>
+        <p ng-show="notif.timeLeft != null && notif.message == undefined">Prochaine pause dans {{ notif.timeLeft }} {{ notif.unit }}. Pause @ {{ notif.breakTime }}</p>
+        <p ng-show="notif.message != undefined">{{ notif.message }}</p>
       </div>
     </div>
 

@@ -52,7 +52,7 @@ function Viewers(sio) {
 }
 
 var viewers = Viewers(sio);
-var calendar = [];
+var calendar = {};
 
 // @todo extract in its own
 sio.on('connection', function(socket) {

@@ -46,7 +46,7 @@ gaze(directory, function(err, watcher) {
   });
 
   // Send calendar
-  sio.emit('calendar:newfile',calendar.heures);
+  sio.emit('calendar:newfile',calendar);
 
   // On file changed
   this.on('changed', function(filepath) {
