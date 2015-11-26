@@ -14,6 +14,7 @@ angular
 SocketIOService.onCalendarNewFile(onCalendarNewFile.bind(this));
 
     this.calculateTime = function (){
+      this.message = undefined;
       var now = moment(),
           ind = 0;
 
@@ -29,18 +30,29 @@ SocketIOService.onCalendarNewFile(onCalendarNewFile.bind(this));
         }
       }
 
-      var endPause = moment(closest).add(this.breaks[ind], 'minutes');
+      if ( ind === 0 ) {
+        this.message = "Allez, partez chez vous !";
+        console.log("Allez, partez chez vous !");
+      }
+      if (moment(this.hours[ind-1], 'HH:mm') < now) {
+        var endPause = moment(this.hours[ind-1], 'HH:mm').add(this.breaks[ind-1], 'minutes');
+        var bet = moment(this.hours[ind-1], 'HH:mm');
 
-      if ( endPause > closest ) {
-        this.message = "C'est la pause !";
-        console.log("C'est la pause !" + ind);
-        if ( this.breaks[ind] == 0 ) {
-          this.message = "Allez, partez chez vous !";
-          console.log("Allez, partez chez vous !");
-        } else if ( this.breaks[ind] > 10 ) {
-          this.message = "Allez manger !";
-          console.log("Allez manger !");
+        if ( now.isBetween(bet, endPause) ) {
+          if( endPause.diff(now,'minutes') == 0){
+            this.message = "C'est la pause ! Vous avez encore " + endPause.diff(now, 'seconds') + " secondes de pause." + " Cours @ " + endPause.format('HH:mm');
+          }else{
+            this.message = "C'est la pause ! Vous avez encore " + endPause.diff(now, 'minutes') + " minutes de pause." + " Cours @ " + endPause.format('HH:mm');
+          }
+          console.log("Next @ "+closest.format('HH:mm'));
+          console.log("C'est la pause ! " + ind);
+          if ( this.breaks[ind-1] > 10 ) {
+            this.message = "Allez manger !" + " Cours @ " + endPause.format('HH:mm');
+            console.log("Allez manger !" + " Cours @ " + endPause.format('HH:mm'));
+          }
         }
+      } else {
+        var endPause = moment(closest).add(this.breaks[ind], 'minutes');
       }
 
       if( closest.diff(now,'minutes') == 0){
