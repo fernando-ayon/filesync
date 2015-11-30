@@ -36,17 +36,15 @@ filesync-relay /path/to/directory
 ## Pause Notification usages
 
 - Launch server.js and :
-- Launching relay.js specifying the path to the calendar explicitly
+- Launching relay.js specifying the path to the calendar explicitly will use that .json file as calendar
 ```
-node server.js
 node relay.js [path/to/directoy] [path/to/calendar]
 ```
 - Launching relay without specifying the path to the calendar will search for the default iut.json file in the /tmp/ directory
 ```
-node server.js
 node relay.js [path/to/directoy] {/tmp/iut.json}
 ```
-- Open your browser as localhost:3000
+- Open your browser @ localhost:3000
 - Click the button to display the time left for the next pause !
 
 ## [Changelog](/CHANGELOG.md)
