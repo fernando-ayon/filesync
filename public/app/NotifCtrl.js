@@ -25,13 +25,11 @@ SocketIOService.onCalendarNewFile(onCalendarNewFile.bind(this));
 
         if ( current > now && current > closest && closest < now ){
             closest = moment(this.hours[i], 'HH:mm');
-            console.log("asdsd "+closest.format('HH:mm'));
             this.ind = i;
             this.message = undefined;
         } else if ( !(current > now) && current > closest && closest < now) {
           closest = moment(this.hours[i], 'HH:mm');
-          console.log("bsdsd " +closest.format('HH:mm'));
-          this.ind = i;
+          this.ind = i
           this.message = "Allez, partez chez vous !";
         }
       }
@@ -66,7 +64,6 @@ SocketIOService.onCalendarNewFile(onCalendarNewFile.bind(this));
         this.timeLeft = closest.diff(now,'minutes');
         this.unit = "minutes";
         console.log('Prochaine pause dans ', closest.diff(now,'minutes'),'minutes.');
-
       }
       console.log('La prochaine pause @ : ' + closest.format('HH:mm'));
       this.breakTime = closest.format('HH:mm');
