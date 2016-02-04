@@ -54,3 +54,8 @@ node relay.js [path/to/directoy] {/tmp/iut.json}
     ]
 }
 ```
+
+## Problems & Difficulties 
+
+As I am new to JavaScript and NodeJS the main problem was to adapt to the syntax and in general to understand how to pass variables between the entities. 
+Basically what I did was to create a controller 'NotifCtrl.js' which is to be executed every time the user clicks a show pause button.
